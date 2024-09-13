@@ -38,8 +38,10 @@ public class Conjunto {
 
             numeroAleatorio = numeroAleatorio % 1001;
 
-            if (numeroAleatorio < 0) numeroAleatorio = numeroAleatorio * (-1);
-           
+            if (numeroAleatorio < 0) {
+                numeroAleatorio = numeroAleatorio * (-1);
+            }
+
             arrayOriginal[contador] = numeroAleatorio;
 
             // Incrementa o contador
@@ -50,6 +52,8 @@ public class Conjunto {
         // Copia arrayOriginal para arraySelectionSort
         arraySelectionSort = arrayOriginal.clone();
 
+        OrdenarSelectionSort();
+        
     }
 
     public String obterArray() {
@@ -74,7 +78,7 @@ public class Conjunto {
         return valor;
     }
 
-   /* 
+    /* 
     public int buscaSequencial(int elemento) {
 
         for (int pos = 0; pos < arrayOriginal.length; pos++) {
@@ -87,8 +91,7 @@ public class Conjunto {
         // Se o elemento não for encontrado em nenhuma posição do array, retorna -1
         return -1;
     }
-   */
-
+     */
     public void OrdenarSelectionSort() {
         // O método OrdenarSelectionSort ordena o array arraySelectionSort em ordem crescente usando o algoritmo de Selection Sort
 
@@ -135,12 +138,37 @@ public class Conjunto {
     public int buscaSequencialOrdenada(int elemento) {
 
         for (int pos = 0; pos < arraySelectionSort.length; pos++) {
-               
-            if (elemento < arraySelectionSort[pos]) return -1;
-            if (elemento == arraySelectionSort[pos]) return pos; // O laço é interrompido se o elemento buscado for encontrado
-            
+
+            if (elemento < arraySelectionSort[pos]) {
+                return -1;
+            }
+            if (elemento == arraySelectionSort[pos]) {
+                return pos; // O laço é interrompido se o elemento buscado for encontrado
+            }
         }
-        
+
+        return -1; // Se o elemento não for encontrado em nenhuma posição do array, retorna -1
+    }
+
+    public int buscaBinaria(int elemento) {
+
+        int low = 0, high = arraySelectionSort.length - 1;
+
+        while (low <= high) {
+
+            int mid = (low + high) / 2;
+
+            if (arraySelectionSort[mid] == elemento) {
+                return mid;
+            }
+            if (arraySelectionSort[mid] < elemento) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+
+        }
+
         return -1; // Se o elemento não for encontrado em nenhuma posição do array, retorna -1
     }
 
