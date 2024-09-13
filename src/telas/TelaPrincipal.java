@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package telas;
 
 import javax.swing.JOptionPane;
@@ -13,13 +9,17 @@ import modelos.Conjunto;
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
+    Conjunto conjunto = null; // declaração e inicialização de uma variável do tipo Conjunto com o valor null
+
     /**
      * Creates new form TelaPrincipal
      */
     public TelaPrincipal() {
         initComponents();
-                this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null); // Posiciona a janela no centro da tela.
         jTextArea_Saida.setEnabled(false);
+        jTextArea_Ordenado.setEnabled(false);
+        jTextField_Resultado.setEnabled(false);
         setTitle("CONJUNTO DE NÚMEROS");
     }
 
@@ -40,6 +40,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea_Saida = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jTextField_Valor = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jTextField_Resultado = new javax.swing.JTextField();
+        jButton_Buscar = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea_Ordenado = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,7 +74,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setText("DADOS GERADOS ALEATORIAMENTE INCLUIDOS NO VETOR:");
+        jLabel3.setText("DADOS DO VETOR ORDENADO: ");
 
         jTextArea_Saida.setColumns(20);
         jTextArea_Saida.setRows(5);
@@ -74,14 +83,48 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Yu Gothic UI Semilight", 3, 14)); // NOI18N
         jLabel4.setText("by Luís Fernando de Oliveira Siqueira");
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setText("DADOS GERADOS ALEATORIAMENTE INCLUIDOS NO VETOR:");
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel6.setText("RESULTADO");
+
+        jTextField_Valor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_ValorActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel7.setText("VALOR");
+
+        jTextField_Resultado.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jTextField_Resultado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_ResultadoActionPerformed(evt);
+            }
+        });
+
+        jButton_Buscar.setBackground(new java.awt.Color(153, 153, 153));
+        jButton_Buscar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton_Buscar.setText("BUSCAR");
+        jButton_Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_BuscarActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel8.setText("BUSCA SEQUÊNCIAL MELHORADA EM UM VETOR GERADO ALEATORIAMENTE - ORDENADO: ");
+
+        jTextArea_Ordenado.setColumns(20);
+        jTextArea_Ordenado.setRows(5);
+        jScrollPane2.setViewportView(jTextArea_Ordenado);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(117, 117, 117))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -101,6 +144,29 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 744, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(117, 117, 117))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 744, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField_Valor, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(45, 45, 45)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField_Resultado, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(36, 36, 36)
+                                .addComponent(jButton_Buscar)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,11 +178,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jTextField_QuantidadeNumeros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton_Gerar))
-                .addGap(52, 52, 52)
+                .addGap(58, 58, 58)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(jLabel8)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jTextField_Valor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(jTextField_Resultado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_Buscar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addGap(22, 22, 22))
         );
@@ -130,21 +209,60 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jButton_GerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_GerarActionPerformed
         // TODO add your handling code here:
-        
-            try {
+
+        try {
 
             int tamanho = Integer.parseInt(jTextField_QuantidadeNumeros.getText());
 
-            Conjunto conjunto = new Conjunto(tamanho);
+            conjunto = new Conjunto(tamanho); // Cria uma nova instância e define o tamannho do array
 
-            jTextArea_Saida.setText(conjunto.obterArray());
+            jTextArea_Saida.setText(conjunto.obterArray()); // Retorna o texto atual inserido pelo usuário como uma String e converte em inteiro.
+
+            jTextArea_Ordenado.setText(conjunto.obterArrayOrdenado());
 
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(rootPane, erro.getMessage());
-        } 
-       
-                
+        }
+
+
     }//GEN-LAST:event_jButton_GerarActionPerformed
+
+    private void jTextField_ValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_ValorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_ValorActionPerformed
+
+    private void jTextField_ResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_ResultadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_ResultadoActionPerformed
+
+    private void jButton_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BuscarActionPerformed
+
+        try {
+
+            int elemento = Integer.parseInt(jTextField_Valor.getText()); // Retorna o texto atual inserido pelo usuário como uma String e converte em inteiro.
+
+            int resultado = conjunto.buscaSequencialOrdenada(elemento); // Chama o método de busca e guarda o resultado numa variável.
+
+            String resultadoString = String.valueOf(resultado); // Converte o resultado em String
+
+            String saida = "";
+
+            if (resultado == (-1)) {
+
+                saida = "Valor não existe";
+
+                jTextField_Resultado.setText(saida);
+
+            } else {
+                saida = "Valor existe e está na posição " + resultadoString;
+            }
+
+            jTextField_Resultado.setText(saida);
+
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(rootPane, erro.getMessage());
+        }
+    }//GEN-LAST:event_jButton_BuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,13 +300,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton_Buscar;
     private javax.swing.JButton jButton_Gerar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea_Ordenado;
     private javax.swing.JTextArea jTextArea_Saida;
     private javax.swing.JTextField jTextField_QuantidadeNumeros;
+    private javax.swing.JTextField jTextField_Resultado;
+    private javax.swing.JTextField jTextField_Valor;
     // End of variables declaration//GEN-END:variables
 }
